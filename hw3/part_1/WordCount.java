@@ -1,4 +1,4 @@
-package part_1;
+package hw3;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,7 +22,7 @@ public class WordCount {
 
             while (read.hasNextLine()) {
                 String data = read.nextLine();
-                System.out.println(data);
+//                System.out.println(data);
                 for (int i = 0; i <= words.length - 1; i++) {
                     String wordCheck = words[i];
                     if (data.toLowerCase().contains(wordCheck)) {
