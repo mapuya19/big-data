@@ -1,0 +1,49 @@
+javac -classpath `yarn classpath` -d . CleanMapper.java
+javac -classpath `yarn classpath` -d . CleanReducer.java
+javac -classpath `yarn classpath`:. -d . Clean.java
+jar -cvf Clean.jar *.class
+hdfs dfs -mkdir hw7 
+hdfs dfs -mkdir hw7/input
+hdfs dfs -put Housing_Building.csv hw7/input
+hadoop jar Clean.jar Clean /user/mja610/hw7/input /user/mja610/hw7/output
+hdfs dfs -cat /user/mja610/hw7/output/part-m-00000
+
+rm *.class
+rm *.jar
+hdfs dfs -rm -r hw7/output
+
+setfacl -m u:adm209:rwx mja610
+setfacl -m u:adm209:rwx mja610/hw7
+setfacl -m u:adm209:rwx mja610/hw7/part_1
+setfacl -m u:adm209:rwx mja610/hw7/part_2
+setfacl -m u:adm209:rwx mja610/hw7/part_1/output
+setfacl -m u:adm209:rwx mja610/hw7/part_2/output
+
+setfacl -m u:sj3549:rwx mja610
+setfacl -m u:sj3549:rwx mja610/hw7
+setfacl -m u:sj3549:rwx mja610/hw7/part_1
+setfacl -m u:sj3549:rwx mja610/hw7/part_2
+setfacl -m u:sj3549:rwx mja610/hw7/part_1/output
+setfacl -m u:sj3549:rwx mja610/hw7/part_2/output
+
+hdfs dfs -setfacl -R -m user:adm209:rwx hw7
+hdfs dfs -setfacl -R -m user:adm209:rwx hw7/input
+hdfs dfs -setfacl -R -m user:adm209:rwx hw7/part_1/output
+hdfs dfs -setfacl -R -m user:adm209:rwx hw7/part_1/output_2
+hdfs dfs -setfacl -R -m user:adm209:rwx hw7/part_2/
+hdfs dfs -setfacl -R -m default:adm209:rwx hw7
+hdfs dfs -setfacl -R -m default:adm209:rwx hw7/input
+hdfs dfs -setfacl -R -m default:adm209:rwx hw7/part_1/output
+hdfs dfs -setfacl -R -m default:adm209:rwx hw7/part_1/output_2
+hdfs dfs -setfacl -R -m default:adm209:rwx hw7/part_2/
+
+hdfs dfs -setfacl -R -m user:sj3549:rwx hw7
+hdfs dfs -setfacl -R -m user:sj3549:rwx hw7/input
+hdfs dfs -setfacl -R -m user:sj3549:rwx hw7/part_1/output
+hdfs dfs -setfacl -R -m user:sj3549:rwx hw7/part_1/output_2
+hdfs dfs -setfacl -R -m user:sj3549:rwx hw7/part_2/
+hdfs dfs -setfacl -R -m default:sj3549:rwx hw7
+hdfs dfs -setfacl -R -m default:sj3549:rwx hw7/input
+hdfs dfs -setfacl -R -m default:sj3549:rwx hw7/part_1/output
+hdfs dfs -setfacl -R -m default:sj3549:rwx hw7/part_1/output_2
+hdfs dfs -setfacl -R -m default:sj3549:rwx hw7/part_2/

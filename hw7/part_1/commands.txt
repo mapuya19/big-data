@@ -1,0 +1,9 @@
+javac -classpath `yarn classpath` -d . CountRecsMapper.java
+javac -classpath `yarn classpath` -d . CountRecsReducer.java
+javac -classpath `yarn classpath`:. -d . CountRecs.java
+jar -cvf CountRecs.jar *.class
+hdfs dfs -mkdir hw7 
+hdfs dfs -mkdir hw7/input
+hdfs dfs -put Housing_Building.csv hw7/input
+hadoop jar CountRecs.jar CountRecs /user/mja610/hw7/input /user/mja610/hw7/output
+hadoop fs -cat /user/mja610/hw7/output/part-r-00000
